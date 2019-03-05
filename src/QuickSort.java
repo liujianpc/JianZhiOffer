@@ -11,8 +11,16 @@ import java.util.Arrays;
  * 3、前面前面遍歷與
  * <p>
  * 优化：
- * 1、选择low-mid-high中的中位数
+ * 1、选择low-mid-high中的中位数，防止最差的情况  三数取中法：
+ 选择这组数据的第一个元素、中间的元素、最后一个元素，这三个元素里面值居中的元素作为基准数。
  * 2、随机选择基准
+ * 3、小区间优化 当划分的子序列很小的时候(一般认为小于13个元素左右时)，
+ * 我们在使用快速排序对这些小序列排序反而不如直接插入排序高效。
+ * 因为快速排序对数组进行划分最后就像一颗二叉树一样，
+ * 当序列小于13个元素时我们再使用快排的话就相当于增加了二叉树的最后几层的结点数目，增加了递归的次数。
+ * 所以我们在当子序列小于13个元素的时候就改用直接插入排序来对这些子序列进行排序。
+ * 4、
+
  */
 
 /**
@@ -27,7 +35,7 @@ class QuickSort {
     }
 
     private static void sort(int[] array, int low, int high) {
-        int index = partitionHole(array, low, high);
+        int index = partitionHole2(array, low, high);
         if (index > low)
             sort(array, low, index - 1);
         if (high > index)
@@ -218,6 +226,7 @@ class QuickSort {
 
     /**
      * 算法导论的方法，将最后的数作为key piovt基准值
+     * 前后指针法
      *
      * @param array
      * @param low

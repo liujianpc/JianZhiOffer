@@ -77,12 +77,12 @@ class TraversalBinTree {
      * @param root
      */
     private void preTravelsalLoop2(TreeNode root) {
-        if (root == null) {
+        /*if (root == null) {
             return;
-        }
+        }*/
 
         Stack<TreeNode> stack = new Stack<>();
-        while (!stack.isEmpty()) {
+        while (root != null || !stack.isEmpty()) {
 
             while (root != null) {
                 System.out.print(root.val);

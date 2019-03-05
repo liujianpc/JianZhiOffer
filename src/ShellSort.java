@@ -3,17 +3,23 @@
  * Created by Liuian
  */
 
+import java.util.Arrays;
+
 /**
  * 希尔排序，简单插入排序的一个变种
  */
 class ShellSort {
 
 
-    private void shellSort(int[] array){
+    public static void main(String[] agrs){
+        int[] array = new int[]{9,10,2,8,6,5};
+        System.out.println(Arrays.toString(shellSort(array)));
+    }
+    private static int[] shellSort(int[] array){
         int gap = array.length / 2;
-        while (gap > 0){
-            for (int i = 0; i < array.length - 1; i++) {
-                int current = array[i + 1];
+        while (gap >= 1){
+            for (int i = gap; i <= array.length - 1; i = i + gap) {
+                int current = array[i];
                 int preIndex = i - gap;
                 while (preIndex >= 0 && array[preIndex] > current){
                     array[preIndex+gap] = array[preIndex];
@@ -23,5 +29,6 @@ class ShellSort {
             }
             gap = gap / 2;
         }
+        return array;
     }
 }
