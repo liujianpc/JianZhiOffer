@@ -11,22 +11,29 @@
  */
 class CharContains {
 
-    public int contains(char[] s, char[] t){
+    public static int contains(char[] s, char[] t){
         char s0 = s[0];
         int beginIndex = -1;
         for (int i = 0; i < t.length; i++) {
             if (s0 == t[i]){
                 beginIndex = i;
+               // System.out.println(i);
                 int j = 0;
-                while (s[j] == t[beginIndex] && j < s.length && beginIndex < t.length){
+                while (j < s.length && beginIndex < t.length && s[j] == t[beginIndex]){
+                    //System.out.print(s[j]);
                     j++;
                     beginIndex++;
                 }
-                if (j == s.length - 1){
+               // System.out.println("s.length--"+s.length);
+                if (j == s.length){
                     return i;
                 }
             }
         }
         return -1;
+    }
+
+    public static void main(String[] args){
+        System.out.println(contains(new char[]{'a','b','c','d'},new char[]{'a','b','d','f','a','b','c','d','f','e','h'}));
     }
 }

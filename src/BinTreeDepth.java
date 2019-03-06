@@ -63,6 +63,7 @@ class BinTreeDepth {
                     queue.offer(currentNode.right);
                 }
             }
+            current = 0;
 
             depth++;
 

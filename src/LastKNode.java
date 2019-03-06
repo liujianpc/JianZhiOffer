@@ -41,6 +41,7 @@ class LastKNode {
         int i = 0;
         while (i < k - 1) {
             pre = pre.next;
+            i++;
         }
         while (pre.next != null) {
             pre = pre.next;
