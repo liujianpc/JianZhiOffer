@@ -9,6 +9,35 @@
  */
 class MergeList {
 
+    /**
+     * 合并两个有序序列
+     *
+     * @param leftArray
+     * @param rightArray
+     * @return
+     */
+    private static int[] mergeArray(int[] leftArray, int[] rightArray) {
+
+        int[] newArray = new int[leftArray.length + rightArray.length];
+
+        for (int i = 0, index = 0, j = 0; index < newArray.length; index++) {
+
+            if (i > leftArray.length - 1) {
+                newArray[index] = rightArray[j++];
+
+            } else if (j > rightArray.length - 1) {
+                newArray[index] = leftArray[i++];
+
+            } else if (leftArray[i] > rightArray[j]) {
+                newArray[index] = rightArray[j++];
+            } else {
+                newArray[index] = leftArray[i++];
+            }
+
+        }
+        return newArray;
+    }
+
     public static int[] merge(int[] a, int[] b) {
         if (a == null || a.length == 0) {
             throw new IllegalArgumentException("invalid input");
@@ -115,5 +144,6 @@ class MergeList {
 
         return head.next;
     }
+
 
 }

@@ -65,7 +65,7 @@ class MaxSubSequenceSum {
                 maxCurr = array[0];
             } else if (maxCurr >= 0) {
                 maxCurr += array[i];
-            } else if (maxCurr < 0) {
+            } else {
                 maxCurr = array[i];
             }
 

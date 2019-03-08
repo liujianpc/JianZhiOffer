@@ -47,12 +47,12 @@ class RebuildBinTree {
     /**
      * 第一种
      *
-     * @param preArray
-     * @param preStart
-     * @param preEnd
-     * @param midArray
-     * @param midStart
-     * @param midEnd
+     * @param preArray 先序序列
+     * @param preStart 先序开始index
+     * @param preEnd   先序结束index
+     * @param midArray 中序序列
+     * @param midStart 中序开始index
+     * @param midEnd   中序结束index
      * @return
      */
     private static TreeNode rebuildBinTreeCore(int[] preArray, int preStart, int preEnd,
@@ -66,16 +66,17 @@ class RebuildBinTree {
 
         TreeNode root = new TreeNode();
         root.val = rootval;
-        int leftLen = index - preStart;
+        int leftLen = index - preStart + 1;
         int rightLen = preArray.length - 1 - index;
 
         if (leftLen > 0) {
             root.left = rebuildBinTreeCore(preArray, preStart + 1, preStart + leftLen,
-                    midArray, midStart, midStart + leftLen);
+                    midArray, midStart, midStart + leftLen - 1);
+
+            root.right = rebuildBinTreeCore(preArray, preStart + leftLen + 1, preEnd,
+                    midArray, midStart + leftLen + 1, midEnd);
         }
 
-        root.right = rebuildBinTreeCore(preArray, preStart + leftLen + 1, preEnd,
-                midArray, midStart + leftLen + 1, midEnd);
 
         return root;
 

@@ -20,7 +20,7 @@ class Shuffle {
         }
 
         int len = array.length;
-        for (int i = len; i >= 0; i--) {
+        for (int i = len - 1; i >= 0; i--) {
             int randIndex = (new Random().nextInt(i + 1));
             int temp = array[i];
             array[i] = array[randIndex];

@@ -16,7 +16,7 @@ class InsertSort {
         for (int i = 0; i < array.length - 1; i++) {
             int current = array[i + 1];
             int preIndex = i;
-            while (current < array[preIndex] && preIndex >= 0){//也可以改成for(int j = i; current < array[i]&& i >= 0; j - 1)
+            while (current < array[preIndex] && preIndex >= 0){//也可以改成for(int j = i; current < array[i]&& i >= 0; j--)
                 array[preIndex + 1] = array[preIndex];
                 preIndex--;
 

@@ -21,31 +21,31 @@ class RemoveDuplicatedNode {
 
     /**
      * 遍历重复的，然后删去
+     *
      * @param head
      * @return
      */
     public Node removeDuplicatedNode(Node head) {
-        if (head == null && head.next == null) {
+        if (head == null || head.next == null) {
             return head;
         }
 
         Node pHead = new Node(null, Integer.MIN_VALUE);
         pHead.next = head;
-        Node pre = pHead;
         Node curr = pHead;
 
         while (curr != null) {
+            Node temp = curr;
             while (curr.next != null && curr.val == curr.next.val) {
                 curr = curr.next;
             }
 
-            pre.next = curr.next;
-
+            temp.next = curr;
 
             curr = curr.next;
         }
 
-        return pre.next;
+        return head;
 
     }
 }

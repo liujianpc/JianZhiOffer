@@ -33,7 +33,7 @@ class FibonacciSearch {
         int mid = -1;
         int k = fibonacciLen - 1;
         while (low < high) {
-            mid = low + fibonacciArray[k] - 1;
+            mid = low + fibonacciArray[k-1] - 1;
 
             if (filledArray[mid] > key) {
                 high = mid - 1;

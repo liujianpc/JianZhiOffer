@@ -35,12 +35,8 @@ class TraversalBinTree {
         }
 
         System.out.print(root.val);
-        if (root.left != null) {
-            preTravel(root.left);
-        }
-        if (root.right != null) {
-            preTravel(root.right);
-        }
+        preTravel(root.left);
+        preTravel(root.right);
     }
 
     /**
@@ -77,9 +73,6 @@ class TraversalBinTree {
      * @param root
      */
     private void preTravelsalLoop2(TreeNode root) {
-        /*if (root == null) {
-            return;
-        }*/
 
         Stack<TreeNode> stack = new Stack<>();
         while (root != null || !stack.isEmpty()) {
@@ -90,8 +83,10 @@ class TraversalBinTree {
                 root = root.left;
             }
 
-            root = stack.pop();
-            stack.push(root.right);
+            if (!stack.isEmpty()) {
+                root = stack.pop();
+                stack.push(root.right);
+            }
         }
     }
 
@@ -122,13 +117,11 @@ class TraversalBinTree {
      */
 
     private void midTravelByLoop(TreeNode root) {
-        if (root == null) {
-            return;
-        }
+
 
         Stack<TreeNode> stack = new Stack<>();
 
-        while (!stack.isEmpty()) {
+        while (root != null || !stack.isEmpty()) {
 
             while (root != null) {
                 stack.push(root);
@@ -190,6 +183,10 @@ class TraversalBinTree {
 
         }
 
+        while (!stack1.isEmpty()) {
+            stack2.push(stack1.pop());
+        }
+
         while (!stack2.isEmpty()) {
             System.out.print(stack2.pop().val);
         }
@@ -242,6 +239,38 @@ class TraversalBinTree {
                 stack.push(current.left);
             }
         }
+    }
+
+
+    public int getTreeDepth(TreeNode root) {
+        if (root == null) {
+            return 0;
+        }
+        Queue<TreeNode> queue = new LinkedList<>();
+        queue.offer(root);
+
+        int depth = 0;
+        while (!queue.isEmpty()) {
+            int last = queue.size();
+            int index = 0;
+            while (index < last) {
+                TreeNode current = queue.poll();
+                if (current != null) {
+                    if (current.left != null) {
+                        queue.offer(current.left);
+                    }
+
+                    if (current.right != null) {
+                        queue.offer(current.right);
+                    }
+                }
+                index++;
+
+            }
+            depth++;
+
+        }
+        return depth;
     }
 
 }

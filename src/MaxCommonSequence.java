@@ -218,4 +218,73 @@ class MaxCommonSequence {
 
     }
 
+    /**
+     * 双重for切割  n^3
+     * @param a
+     * @param b
+     * @return
+     */
+    public int getMaxZichuanLen(String a, String b) {
+        int max = Integer.MIN_VALUE;
+        for (int i = 0; i < a.length(); i++) {
+            for (int j = 0; j < b.length(); j++) {
+                if (a.charAt(i) == b.charAt(j)) {
+                    int tempI = i;
+                    int tempJ = j;
+                    int total = 0;
+                    while (tempI < a.length() && tempJ < b.length() && a.charAt(tempI) == b.charAt(tempJ)) {
+                        tempI++;
+                        tempJ++;
+                        total++;
+                    }
+                    if (total > max) {
+                        max = total;
+                    }
+
+                }
+            }
+        }
+
+        return max;
+    }
+
+
+    public int getMaxZichuanSize(String a, String b) {
+        int len_a = a.length();
+        int len_b = b.length();
+
+        int max = Integer.MIN_VALUE;
+        int[][] array = new int[len_a + 1][len_b + 1];
+
+        for (int i = 0; i < len_a + 1; i++) {
+            array[i][0] = 0;
+        }
+
+        for (int j = 0; j < len_b + 1; j++) {
+            array[0][j] = 0;
+        }
+
+
+        int maxIndex = -1;
+        for (int i = 1; i < len_a + 1; i++) {
+            for (int j = i; j < len_b + 1; j++) {
+                if (a.charAt(i - 1) == b.charAt(j - 1)) {
+                    array[i][j] = array[i - 1][j - 1] + 1;
+
+                    if (array[i][j] > max) {
+                        max = array[i][j];
+                        maxIndex = j;
+                    }
+                } else {
+                    array[i][j] = 0;
+                }
+            }
+        }
+
+        String maxCommonString = new String(b.toCharArray(), maxIndex - max + 1, max);
+        return max;
+
+
+    }
+
 }

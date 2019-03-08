@@ -12,7 +12,7 @@ import java.util.Arrays;
  * <p>
  * 优化：
  * 1、选择low-mid-high中的中位数，防止最差的情况  三数取中法：
- 选择这组数据的第一个元素、中间的元素、最后一个元素，这三个元素里面值居中的元素作为基准数。
+ * 选择这组数据的第一个元素、中间的元素、最后一个元素，这三个元素里面值居中的元素作为基准数。
  * 2、随机选择基准
  * 3、小区间优化 当划分的子序列很小的时候(一般认为小于13个元素左右时)，
  * 我们在使用快速排序对这些小序列排序反而不如直接插入排序高效。
@@ -20,7 +20,6 @@ import java.util.Arrays;
  * 当序列小于13个元素时我们再使用快排的话就相当于增加了二叉树的最后几层的结点数目，增加了递归的次数。
  * 所以我们在当子序列小于13个元素的时候就改用直接插入排序来对这些子序列进行排序。
  * 4、
-
  */
 
 /**
@@ -35,13 +34,20 @@ class QuickSort {
     }
 
     private static void sort(int[] array, int low, int high) {
-        int index = partitionHole2(array, low, high);
+        int index = partitionSuanfaDaolun(array, low, high);
         if (index > low)
             sort(array, low, index - 1);
         if (high > index)
             sort(array, index + 1, high);
     }
 
+    /**
+     * 左右指针法：前后指针都是先遍历停下， 然后交换，最后将停下的碰撞点的值和基准数交换
+     * @param array
+     * @param left
+     * @param right
+     * @return
+     */
     private static int partition(int[] array, int left, int right) {
         int key = array[left];
         int low = left;
@@ -124,6 +130,8 @@ class QuickSort {
 
     /**
      * 挖坑实现法1
+     * 挖坑法，其实也是左右指针
+     * 挖坑法是前后指针只要找到满足条件的就停下来做前后数据的交换。
      *
      * @param array
      * @param low
@@ -238,7 +246,7 @@ class QuickSort {
         int j = low;
         int key = array[high];
 
-        while (i <= j && i < high && j < high) {
+        while (i <= j && i <= high && j <= high) {
             if (array[j] <= key) {
                 int temp = array[++i];
                 array[i] = array[j];
