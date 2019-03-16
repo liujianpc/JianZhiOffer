@@ -4,6 +4,7 @@
  */
 
 /**
+ * 一個KMP問題
  * 判断一个字符串s是否是另一个字符串t的子串
  * 不准用java  string，只能用char数组
  * 如果s是t的子串，则返回位置index
@@ -11,21 +12,21 @@
  */
 class CharContains {
 
-    public static int contains(char[] s, char[] t){
+    public static int contains(char[] s, char[] t) {
         char s0 = s[0];
         int beginIndex = -1;
         for (int i = 0; i < t.length; i++) {
-            if (s0 == t[i]){
+            if (s0 == t[i]) {
                 beginIndex = i;
-               // System.out.println(i);
+                // System.out.println(i);
                 int j = 0;
-                while (j < s.length && beginIndex < t.length && s[j] == t[beginIndex]){
+                while (j < s.length && beginIndex < t.length && s[j] == t[beginIndex]) {
                     //System.out.print(s[j]);
                     j++;
                     beginIndex++;
                 }
-               // System.out.println("s.length--"+s.length);
-                if (j == s.length){
+                // System.out.println("s.length--"+s.length);
+                if (j == s.length) {
                     return i;
                 }
             }
@@ -33,7 +34,28 @@ class CharContains {
         return -1;
     }
 
-    public static void main(String[] args){
-        System.out.println(contains(new char[]{'a','b','c','d'},new char[]{'a','b','d','f','a','b','c','d','f','e','h'}));
+    public static void main(String[] args) {
+        System.out.println(contains(new char[]{'a', 'b', 'c', 'd'}, new char[]{'a', 'b', 'd', 'f', 'a', 'b', 'c', 'd', 'f', 'e', 'h'}));
+    }
+
+
+    private static int contains2(char[] s, char[] p) {
+        int i = 0;
+        int j = 0;
+        while (i < s.length && j < p.length) {
+            if (s[i] == p[j]) {
+                i++;
+                j++;
+            } else {
+                i = i - (j - 1);
+                j = 0;
+            }
+        }
+
+        if (j == p.length) {
+            return i - j;
+        } else {
+            return -1;
+        }
     }
 }
