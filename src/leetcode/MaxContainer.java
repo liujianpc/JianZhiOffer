@@ -54,16 +54,18 @@ class MaxContainer {
         int front = 0;
         int tail = array.length - 1;
         int max = Integer.MIN_VALUE;
-
+        int temp;
         while (front < tail) {
             if (array[front] < array[tail]) {
+                temp = getVolume(front,tail,array);
                 front++;
             } else {
+                temp = getVolume(front,tail,array);
                 tail--;
             }
 
-            if (getVolume(front, tail, array) > max) {
-                max = getVolume(front, tail, array);
+            if (temp > max) {
+                max = temp;
             }
 
 
