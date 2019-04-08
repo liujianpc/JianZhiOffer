@@ -32,20 +32,27 @@ class RemoveDuplicatedNode {
 
         Node pHead = new Node(null, Integer.MIN_VALUE);
         pHead.next = head;
-        Node curr = pHead;
+        Node last = pHead;
+        Node curr = head;
 
-        while (curr != null) {
-            Node temp = curr;
-            while (curr.next != null && curr.val == curr.next.val) {
+
+        //去除多个重复的
+        while (curr != null && curr.next != null) {
+            if (curr.val == curr.next.val) {
+                int value = curr.val;
+                while (curr != null && curr.val == value) {
+                    curr = curr.next;
+                }
+
+            } else {
+                last = curr;
                 curr = curr.next;
             }
 
-            temp.next = curr;
-
-            curr = curr.next;
+            last.next = curr;
         }
 
-        return head;
-
+        return last.next;
     }
+
 }

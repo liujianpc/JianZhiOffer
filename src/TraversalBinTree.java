@@ -101,15 +101,11 @@ class TraversalBinTree {
             return;
         }
 
-        if (root.left != null) {
-            midTravelsal(root.left);
-        }
+        midTravelsal(root.left);
 
         System.out.print(root.val);
 
-        if (root.right != null) {
-            midTravelsal(root.right);
-        }
+        midTravelsal(root.right);
     }
 
     /**
@@ -128,10 +124,11 @@ class TraversalBinTree {
                 root = root.left;
             }
 
-            root = stack.pop();
-            System.out.print(root.val);
-            root = root.right;
-
+            if (!stack.isEmpty()) {
+                root = stack.pop();
+                System.out.print(root.val);
+                root = root.right;
+            }
 
         }
     }
@@ -146,13 +143,9 @@ class TraversalBinTree {
             return;
         }
 
-        if (root.left != null) {
-            postOrderTravelsal(root.left);
-        }
+        postOrderTravelsal(root.left);
 
-        if (root.right != null) {
-            postOrderTravelsal(root.right);
-        }
+        postOrderTravelsal(root.right);
 
         System.out.print(root.val);
     }

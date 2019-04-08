@@ -39,11 +39,17 @@ class CharContains {
     }
 
 
+    /**
+     * s是否是p的子串
+     * @param s
+     * @param p
+     * @return
+     */
     private static int contains2(char[] s, char[] p) {
         int i = 0;
         int j = 0;
-        while (i < s.length && j < p.length) {
-            if (s[i] == p[j]) {
+        while (i < p.length && j < s.length) {
+            if (p[i] == s[j]) {
                 i++;
                 j++;
             } else {
@@ -52,7 +58,7 @@ class CharContains {
             }
         }
 
-        if (j == p.length) {
+        if (j == s.length) {
             return i - j;
         } else {
             return -1;

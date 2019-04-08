@@ -219,13 +219,15 @@ class MaxCommonSequence {
     }
 
     /**
-     * 双重for切割  n^3
+     * 双重for切割
+     * 类似暴力kmp
      * @param a
      * @param b
      * @return
      */
     public int getMaxZichuanLen(String a, String b) {
         int max = Integer.MIN_VALUE;
+        int maxIndex = 0;
         for (int i = 0; i < a.length(); i++) {
             for (int j = 0; j < b.length(); j++) {
                 if (a.charAt(i) == b.charAt(j)) {
@@ -239,16 +241,27 @@ class MaxCommonSequence {
                     }
                     if (total > max) {
                         max = total;
+                        maxIndex = tempJ;
+
                     }
 
                 }
             }
         }
 
+        String commZichuan = new String(b.toCharArray(),maxIndex - max + 1, max);
+
         return max;
     }
 
 
+    /**
+     * 寻找最大公共子串
+     * 二维矩阵：两个for循环
+     * @param a
+     * @param b
+     * @return
+     */
     public int getMaxZichuanSize(String a, String b) {
         int len_a = a.length();
         int len_b = b.length();
@@ -267,7 +280,7 @@ class MaxCommonSequence {
 
         int maxIndex = -1;
         for (int i = 1; i < len_a + 1; i++) {
-            for (int j = i; j < len_b + 1; j++) {
+            for (int j = 1; j < len_b + 1; j++) {
                 if (a.charAt(i - 1) == b.charAt(j - 1)) {
                     array[i][j] = array[i - 1][j - 1] + 1;
 

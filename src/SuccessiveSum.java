@@ -12,6 +12,8 @@ class SuccessiveSum {
     public static void main(String[] args) {
         deconstruct(18);
         deconstruct2(20);
+        deconstruct2(30);
+        deconstruct2(40);
     }
 
 

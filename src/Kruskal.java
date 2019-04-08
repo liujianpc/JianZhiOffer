@@ -3,13 +3,16 @@
  * Created by LiuJian
  *
  * @author LiuJian
- */
+ *//*
 
+
+*/
 /**
  * 克鲁斯卡尔最小生成树算法
  * 1、所有边按权值排序
  * 2、选最小的边，且边的终点不再已经生成的树，则将边放入最小生成树
- */
+ *//*
+
 class Kruskal {
 
     void kruskal(int edgeNum, char[] vexs, int[][] matrix) {
@@ -41,3 +44,4 @@ class Kruskal {
         int weight;
     }
 }
+*/
